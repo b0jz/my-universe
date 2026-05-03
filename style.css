@@ -1,0 +1,75 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: radial-gradient(circle at bottom, #2b1055 0%, #100626 40%, #000000 100%);
+    font-family: 'Cinzel', serif;
+}
+
+#starfield {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    width: 80%;
+    /* removed pointer-events: none; so button is clickable */
+}
+
+h1 {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: 400;
+    text-shadow: 0 0 20px rgba(200, 150, 255, 0.8), 0 0 40px rgba(150, 50, 255, 0.6);
+    letter-spacing: 2px;
+    line-height: 1.4;
+    animation: glow 4s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 20px rgba(200, 150, 255, 0.8), 0 0 40px rgba(150, 50, 255, 0.6);
+    }
+    to {
+        text-shadow: 0 0 30px rgba(220, 180, 255, 1), 0 0 60px rgba(180, 100, 255, 0.8), 0 0 80px rgba(130, 0, 255, 0.5);
+    }
+}
+
+.nav-button {
+    display: inline-block;
+    margin-top: 30px;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    text-decoration: none;
+    background: rgba(150, 50, 255, 0.2);
+    border: 1px solid rgba(200, 150, 255, 0.5);
+    border-radius: 30px;
+    transition: all 0.3s ease;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 15px rgba(150, 50, 255, 0.3);
+}
+
+.nav-button:hover {
+    background: rgba(150, 50, 255, 0.4);
+    box-shadow: 0 0 25px rgba(200, 150, 255, 0.6);
+    transform: translateY(-2px);
+}
+
+@media (max-width: 768px) {
+    h1 {
+        font-size: 2rem;
+    }
+}

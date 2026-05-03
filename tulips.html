@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tulips</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #150a2b 0%, #30104f 50%, #0a0314 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            overflow: hidden;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .container {
+            position: relative;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            animation: fadeIn 2s ease-in-out;
+            z-index: 2;
+        }
+
+        /* SVG Bouquet Styling */
+        .bouquet-wrapper {
+            position: relative;
+            width: 350px;
+            height: 450px;
+            margin-bottom: 40px;
+        }
+
+        .tulip {
+            position: absolute;
+            transform-origin: bottom center;
+            animation: sway 4s ease-in-out infinite alternate;
+        }
+        
+        .t1 { left: 40px; bottom: 50px; transform: rotate(-18deg) scale(0.9); animation-delay: 0.1s; z-index: 1;}
+        .t2 { left: 90px; bottom: 90px; transform: rotate(-8deg) scale(1.15); animation-delay: 0.5s; z-index: 3; }
+        .t3 { left: 160px; bottom: 100px; transform: rotate(2deg) scale(1.3); animation-delay: 0.2s; z-index: 4; }
+        .t4 { left: 220px; bottom: 70px; transform: rotate(15deg) scale(1.05); animation-delay: 0.7s; z-index: 2;}
+        .t5 { left: 260px; bottom: 40px; transform: rotate(25deg) scale(0.85); animation-delay: 0.4s; z-index: 1;}
+        .t6 { left: 120px; bottom: 40px; transform: rotate(-12deg) scale(1); animation-delay: 0.8s; z-index: 5; }
+        .t7 { left: 190px; bottom: 50px; transform: rotate(10deg) scale(0.95); animation-delay: 0.3s; z-index: 5; }
+        .t8 { left: 150px; bottom: 20px; transform: rotate(-3deg) scale(1.1); animation-delay: 0.6s; z-index: 6; } /* Extra center flower */
+
+        @keyframes sway {
+            from { transform: rotate(-3deg); }
+            to { transform: rotate(3deg); }
+        }
+
+        .stem {
+            width: 12px;
+            height: 280px;
+            background: linear-gradient(to right, #1f421a, #3f8031, #255420, #1f421a);
+            border-radius: 6px;
+            position: absolute;
+            bottom: -220px;
+            left: 24px;
+            box-shadow: inset -2px 0 5px rgba(0,0,0,0.4), 2px 0 5px rgba(0,0,0,0.3);
+        }
+
+        .leaf {
+            position: absolute;
+            width: 50px;
+            height: 160px;
+            background: linear-gradient(135deg, #2b5924, #4a913f, #1b3d17);
+            border-radius: 50% 0 50% 0;
+            bottom: -130px;
+            box-shadow: inset -3px -3px 10px rgba(0,0,0,0.3), 3px 3px 8px rgba(0,0,0,0.4);
+        }
+
+        .leaf.left {
+            left: -35px;
+            transform: rotate(-35deg);
+        }
+        
+        .leaf.right {
+            left: 15px;
+            transform: rotate(35deg);
+            border-radius: 0 50% 0 50%;
+        }
+
+        /* Complex realistic flower */
+        .flower {
+            position: absolute;
+            bottom: 40px;
+            left: 0;
+            width: 60px;
+            height: 85px;
+            filter: drop-shadow(0px 8px 6px rgba(0,0,0,0.3));
+        }
+
+        .petal {
+            position: absolute;
+            bottom: 0;
+            background: linear-gradient(180deg, #ff9eb5 0%, #ff5277 50%, #c41e42 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: inset -3px -3px 12px rgba(100,0,30,0.5), inset 3px 3px 10px rgba(255,255,255,0.7);
+        }
+
+        .petal.back {
+            width: 50px;
+            height: 75px;
+            left: 5px;
+            bottom: 5px;
+            background: linear-gradient(180deg, #e6738f 0%, #d13057 50%, #8a0c26 100%);
+            z-index: 1;
+        }
+
+        .petal.left {
+            width: 40px;
+            height: 80px;
+            left: -8px;
+            transform: rotate(-18deg);
+            z-index: 2;
+        }
+
+        .petal.right {
+            width: 40px;
+            height: 80px;
+            right: -8px;
+            transform: rotate(18deg);
+            z-index: 2;
+        }
+
+        .petal.center {
+            width: 50px;
+            height: 85px;
+            left: 5px;
+            bottom: -2px;
+            background: linear-gradient(180deg, #ffb3c6 0%, #ff426a 50%, #a6112d 100%);
+            z-index: 3;
+            box-shadow: inset 0 -5px 15px rgba(100,0,30,0.6), inset 0 5px 12px rgba(255,255,255,0.8);
+        }
+
+        /* Dew drops for realism */
+        .dew {
+            position: absolute;
+            width: 6px;
+            height: 8px;
+            background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9), rgba(255,255,255,0.4) 40%, rgba(255,255,255,0) 80%);
+            border-radius: 50%;
+            box-shadow: 1px 1px 2px rgba(0,0,0,0.2), inset -1px -1px 2px rgba(0,0,0,0.1);
+            z-index: 4;
+            top: 20px;
+            left: 15px;
+            transform: rotate(15deg);
+        }
+
+        .dew2 {
+            top: 40px;
+            left: 35px;
+            width: 4px;
+            height: 5px;
+        }
+
+        .wrapper-ribbon {
+            position: absolute;
+            bottom: -40px;
+            left: 100px;
+            width: 150px;
+            height: 50px;
+            background: linear-gradient(to right, #a67c00, #bf953f, #fcf6ba, #b38728, #fdbf59, #bf953f, #a67c00);
+            border-radius: 25px;
+            z-index: 10;
+            box-shadow: 0 8px 15px rgba(0,0,0,0.6), inset 0 2px 5px rgba(255,255,255,0.5);
+            transform: rotate(-6deg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .wrapper-ribbon::after {
+            content: '';
+            position: absolute;
+            width: 160px;
+            height: 10px;
+            background: rgba(0,0,0,0.2);
+            border-radius: 5px;
+            top: 20px;
+        }
+
+        .envelope-note {
+            background: linear-gradient(135deg, #fffcf5, #e8dcc5);
+            color: #2e1342;
+            padding: 35px 45px;
+            border-radius: 5px;
+            font-size: 2.2rem;
+            line-height: 1.6;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.6), inset 0 0 20px rgba(150, 120, 90, 0.1);
+            position: relative;
+            transform: rotate(-3deg);
+            max-width: 650px;
+            border: 1px solid #c9baa3;
+            margin-top: 60px;
+            z-index: 10;
+            text-shadow: 1px 1px 0px rgba(255,255,255,0.5);
+        }
+
+        .envelope-note::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle at 30% 30%, #ff9eb5 0%, #ff5277 40%, #c41e42 100%);
+            border-radius: 50%;
+            box-shadow: inset -2px -4px 8px rgba(0,0,0,0.3), 0 4px 8px rgba(0,0,0,0.4);
+            border: 2px solid rgba(255,255,255,0.2);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            background: rgba(150, 50, 255, 0.2);
+            padding: 12px 25px;
+            border-radius: 30px;
+            transition: all 0.3s;
+            border: 1px solid rgba(200, 150, 255, 0.5);
+            z-index: 100;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 15px rgba(150, 50, 255, 0.3);
+        }
+        .nav-btn:hover {
+            background: rgba(150, 50, 255, 0.4);
+            box-shadow: 0 0 25px rgba(200, 150, 255, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        /* Floating particles for magic feel */
+        .particles {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="nav-btn">← Back to Universe</a>
+    <div class="particles" id="particles"></div>
+    <div class="container">
+        <div class="bouquet-wrapper">
+            <!-- Tulips with highly realistic layering -->
+            <div class="tulip t1"><div class="stem"></div><div class="leaf left"></div><div class="flower"><div class="petal back"></div><div class="petal left"></div><div class="petal right"></div><div class="petal center"></div><div class="dew"></div></div></div>
+            <div class="tulip t2"><div class="stem"></div><div class="leaf right"></div><div class="flower"><div class="petal back"></div><div class="petal left"></div><div class="petal right"></div><div class="petal center"></div><div class="dew dew2"></div></div></div>
+            <div class="tulip t3"><div class="stem"></div><div class="leaf left"></div><div class="flower"><div class="petal back"></div><div class="petal left"></div><div class="petal right"></div><div class="petal center"></div><div class="dew"></div></div></div>
+            <div class="tulip t4"><div class="stem"></div><div class="leaf right"></div><div class="flower"><div class="petal back"></div><div class="petal left"></div><div class="petal right"></div><div class="petal center"></div><div class="dew dew2"></div></div></div>
+            <div class="tulip t5"><div class="stem"></div><div class="leaf left"></div><div class="flower"><div class="petal back"></div><div class="petal left"></div><div class="petal right"></div><div class="petal center"></div><div class="dew"></div></div></div>
+            <div class="tulip t6"><div class="stem"></div><div class="leaf right"></div><div class="flower"><div class="petal back"></div><div class="petal left"></div><div class="petal right"></div><div class="petal center"></div></div></div>
+            <div class="tulip t7"><div class="stem"></div><div class="leaf left"></div><div class="flower"><div class="petal back"></div><div class="petal left"></div><div class="petal right"></div><div class="petal center"></div><div class="dew dew2"></div></div></div>
+            <div class="tulip t8"><div class="stem"></div><div class="leaf right"></div><div class="flower"><div class="petal back"></div><div class="petal left"></div><div class="petal right"></div><div class="petal center"></div><div class="dew"></div></div></div>
+            
+            <div class="wrapper-ribbon"></div>
+        </div>
+
+        <div class="envelope-note">
+            "im soryy i cant give u real ones but these the best i can do for now i love u as many tulips blossoms r there"
+        </div>
+    </div>
+    
+    <script>
+        // Add subtle floating particles
+        const container = document.getElementById('particles');
+        for(let i=0; i<30; i++) {
+            let p = document.createElement('div');
+            p.style.position = 'absolute';
+            p.style.width = Math.random() * 4 + 1 + 'px';
+            p.style.height = p.style.width;
+            p.style.background = 'rgba(255, 200, 255, ' + (Math.random() * 0.5 + 0.1) + ')';
+            p.style.borderRadius = '50%';
+            p.style.left = Math.random() * 100 + 'vw';
+            p.style.top = Math.random() * 100 + 'vh';
+            p.style.boxShadow = '0 0 10px rgba(255,200,255,0.8)';
+            p.style.animation = `float ${Math.random() * 10 + 5}s linear infinite`;
+            container.appendChild(p);
+        }
+        
+        const style = document.createElement('style');
+        style.innerHTML = `
+            @keyframes float {
+                0% { transform: translateY(0) translateX(0); opacity: 0; }
+                50% { opacity: 1; }
+                100% { transform: translateY(-100vh) translateX(${Math.random() * 100 - 50}px); opacity: 0; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

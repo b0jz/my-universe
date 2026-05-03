@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naming Stars in my Universe</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            font-family: 'Cinzel', serif;
+        }
+        #starfield {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+        .ui-container {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            text-align: center;
+            background: rgba(20, 5, 40, 0.7);
+            padding: 20px 40px;
+            border-radius: 15px;
+            border: 1px solid rgba(150, 50, 255, 0.3);
+            box-shadow: 0 0 20px rgba(100, 30, 150, 0.5);
+            backdrop-filter: blur(5px);
+        }
+        h1 {
+            color: #fff;
+            margin-top: 0;
+            font-size: 2rem;
+            text-shadow: 0 0 10px rgba(200, 150, 255, 0.8);
+        }
+        input[type="text"] {
+            padding: 10px 15px;
+            font-size: 1.1rem;
+            font-family: 'Cinzel', serif;
+            border: 1px solid rgba(200, 150, 255, 0.5);
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.5);
+            color: #fff;
+            outline: none;
+            width: 250px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1.1rem;
+            font-family: 'Cinzel', serif;
+            border: 1px solid rgba(200, 150, 255, 0.5);
+            border-radius: 5px;
+            background: rgba(150, 50, 255, 0.3);
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        button:hover {
+            background: rgba(150, 50, 255, 0.5);
+            box-shadow: 0 0 15px rgba(200, 150, 255, 0.6);
+        }
+        .nav-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            color: #fff;
+            text-decoration: none;
+            background: rgba(150, 50, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 20px;
+            border: 1px solid rgba(200, 150, 255, 0.5);
+            z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <a href="index.html" class="nav-btn">← Back</a>
+    <canvas id="starfield"></canvas>
+    
+    <div class="ui-container">
+        <h1>Naming Stars in my Universe</h1>
+        <form id="starForm">
+            <input type="text" id="starName" placeholder="Enter star name..." required maxlength="20">
+            <button type="submit">Add Star</button>
+        </form>
+    </div>
+
+    <script type="module" src="naming.js"></script>
+</body>
+</html>
